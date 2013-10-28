@@ -3446,6 +3446,12 @@ type 0309, grid 2.5 mm</description>
 <text x="-2.54" y="-2.54" size="1.778" layer="96">&gt;VALUE</text>
 <pin name="GND" x="0" y="2.54" visible="off" length="short" direction="sup" rot="R270"/>
 </symbol>
+<symbol name="+3V3">
+<wire x1="1.27" y1="-1.905" x2="0" y2="0" width="0.254" layer="94"/>
+<wire x1="0" y1="0" x2="-1.27" y2="-1.905" width="0.254" layer="94"/>
+<text x="-2.54" y="-5.08" size="1.778" layer="96" rot="R90">&gt;VALUE</text>
+<pin name="+3V3" x="0" y="-2.54" visible="off" length="short" direction="sup" rot="R90"/>
+</symbol>
 </symbols>
 <devicesets>
 <deviceset name="GND" prefix="GND">
@@ -3455,6 +3461,67 @@ type 0309, grid 2.5 mm</description>
 </gates>
 <devices>
 <device name="">
+<technologies>
+<technology name=""/>
+</technologies>
+</device>
+</devices>
+</deviceset>
+<deviceset name="+3V3" prefix="+3V3">
+<description>&lt;b&gt;SUPPLY SYMBOL&lt;/b&gt;</description>
+<gates>
+<gate name="G$1" symbol="+3V3" x="0" y="0"/>
+</gates>
+<devices>
+<device name="">
+<technologies>
+<technology name=""/>
+</technologies>
+</device>
+</devices>
+</deviceset>
+</devicesets>
+</library>
+<library name="wirepad">
+<description>&lt;b&gt;Single Pads&lt;/b&gt;&lt;p&gt;
+&lt;author&gt;Created by librarian@cadsoft.de&lt;/author&gt;</description>
+<packages>
+<package name="3,17/1,3">
+<description>&lt;b&gt;THROUGH-HOLE PAD&lt;/b&gt;</description>
+<wire x1="1.524" y1="-1.016" x2="1.524" y2="-1.524" width="0.1524" layer="21"/>
+<wire x1="1.524" y1="-1.524" x2="1.016" y2="-1.524" width="0.1524" layer="21"/>
+<wire x1="-1.016" y1="-1.524" x2="-1.524" y2="-1.524" width="0.1524" layer="21"/>
+<wire x1="-1.524" y1="-1.524" x2="-1.524" y2="-1.016" width="0.1524" layer="21"/>
+<wire x1="-1.524" y1="1.016" x2="-1.524" y2="1.524" width="0.1524" layer="21"/>
+<wire x1="-1.524" y1="1.524" x2="-1.016" y2="1.524" width="0.1524" layer="21"/>
+<wire x1="1.016" y1="1.524" x2="1.524" y2="1.524" width="0.1524" layer="21"/>
+<wire x1="1.524" y1="1.524" x2="1.524" y2="1.016" width="0.1524" layer="21"/>
+<circle x="0" y="0" radius="1.27" width="0.1524" layer="51"/>
+<pad name="1" x="0" y="0" drill="1.3208" diameter="3.175" shape="octagon"/>
+<text x="-1.524" y="1.905" size="1.27" layer="25" ratio="10">&gt;NAME</text>
+<text x="0" y="1.2" size="0.0254" layer="27">&gt;VALUE</text>
+</package>
+</packages>
+<symbols>
+<symbol name="PAD">
+<wire x1="-1.016" y1="1.016" x2="1.016" y2="-1.016" width="0.254" layer="94"/>
+<wire x1="-1.016" y1="-1.016" x2="1.016" y2="1.016" width="0.254" layer="94"/>
+<text x="-1.143" y="1.8542" size="1.778" layer="95">&gt;NAME</text>
+<text x="-1.143" y="-3.302" size="1.778" layer="96">&gt;VALUE</text>
+<pin name="P" x="2.54" y="0" visible="off" length="short" direction="pas" rot="R180"/>
+</symbol>
+</symbols>
+<devicesets>
+<deviceset name="3,17/1,3" prefix="PAD" uservalue="yes">
+<description>&lt;b&gt;THROUGH-HOLE PAD&lt;/b&gt;</description>
+<gates>
+<gate name="1" symbol="PAD" x="0" y="0"/>
+</gates>
+<devices>
+<device name="" package="3,17/1,3">
+<connects>
+<connect gate="1" pin="P" pad="1"/>
+</connects>
 <technologies>
 <technology name=""/>
 </technologies>
@@ -3485,13 +3552,19 @@ type 0309, grid 2.5 mm</description>
 <part name="R8" library="resistor" deviceset="R-US_" device="0309/12"/>
 <part name="R9" library="resistor" deviceset="R-US_" device="0309/12"/>
 <part name="GND1" library="supply1" deviceset="GND" device=""/>
+<part name="R10" library="resistor" deviceset="R-US_" device="0309/12"/>
+<part name="BAT+" library="wirepad" deviceset="3,17/1,3" device=""/>
+<part name="BAT-" library="wirepad" deviceset="3,17/1,3" device=""/>
+<part name="GND2" library="supply1" deviceset="GND" device=""/>
+<part name="VB" library="supply1" deviceset="+3V3" device=""/>
+<part name="VB1" library="supply1" deviceset="+3V3" device=""/>
 </parts>
 <sheets>
 <sheet>
 <plain>
 </plain>
 <instances>
-<instance part="U1" gate="G$1" x="30.48" y="58.42" rot="MR180"/>
+<instance part="U1" gate="G$1" x="40.64" y="58.42" rot="MR180"/>
 <instance part="Q1" gate="G$1" x="63.5" y="60.96"/>
 <instance part="R1" gate="G$1" x="66.04" y="38.1" rot="R90"/>
 <instance part="R2" gate="G$1" x="71.12" y="38.1" rot="R90"/>
@@ -3503,6 +3576,12 @@ type 0309, grid 2.5 mm</description>
 <instance part="R8" gate="G$1" x="101.6" y="38.1" rot="R90"/>
 <instance part="R9" gate="G$1" x="106.68" y="38.1" rot="R90"/>
 <instance part="GND1" gate="1" x="66.04" y="22.86"/>
+<instance part="R10" gate="G$1" x="111.76" y="38.1" rot="R90"/>
+<instance part="BAT+" gate="1" x="104.14" y="71.12" rot="R180"/>
+<instance part="BAT-" gate="1" x="104.14" y="60.96" rot="R180"/>
+<instance part="GND2" gate="1" x="96.52" y="50.8"/>
+<instance part="VB" gate="G$1" x="96.52" y="78.74" smashed="yes"/>
+<instance part="VB1" gate="G$1" x="66.04" y="78.74" smashed="yes"/>
 </instances>
 <busses>
 </busses>
@@ -3511,15 +3590,15 @@ type 0309, grid 2.5 mm</description>
 <segment>
 <pinref part="U1" gate="G$1" pin="OUT"/>
 <pinref part="Q1" gate="G$1" pin="G"/>
-<wire x1="45.72" y1="58.42" x2="60.96" y2="58.42" width="0.1524" layer="91"/>
+<wire x1="55.88" y1="58.42" x2="60.96" y2="58.42" width="0.1524" layer="91"/>
 </segment>
 </net>
 <net name="N$2" class="0">
 <segment>
 <pinref part="U1" gate="G$1" pin="-IN"/>
-<wire x1="27.94" y1="55.88" x2="22.86" y2="55.88" width="0.1524" layer="91"/>
-<wire x1="22.86" y1="55.88" x2="22.86" y2="45.72" width="0.1524" layer="91"/>
-<wire x1="22.86" y1="45.72" x2="60.96" y2="45.72" width="0.1524" layer="91"/>
+<wire x1="38.1" y1="55.88" x2="33.02" y2="55.88" width="0.1524" layer="91"/>
+<wire x1="33.02" y1="55.88" x2="33.02" y2="45.72" width="0.1524" layer="91"/>
+<wire x1="33.02" y1="45.72" x2="60.96" y2="45.72" width="0.1524" layer="91"/>
 <pinref part="Q1" gate="G$1" pin="S"/>
 <wire x1="60.96" y1="45.72" x2="66.04" y2="45.72" width="0.1524" layer="91"/>
 <wire x1="66.04" y1="45.72" x2="66.04" y2="55.88" width="0.1524" layer="91"/>
@@ -3542,6 +3621,8 @@ type 0309, grid 2.5 mm</description>
 <pinref part="R9" gate="G$1" pin="2"/>
 <wire x1="101.6" y1="43.18" x2="106.68" y2="43.18" width="0.1524" layer="91"/>
 <wire x1="66.04" y1="55.88" x2="66.04" y2="43.18" width="0.1524" layer="91"/>
+<pinref part="R10" gate="G$1" pin="2"/>
+<wire x1="106.68" y1="43.18" x2="111.76" y2="43.18" width="0.1524" layer="91"/>
 </segment>
 </net>
 <net name="GND" class="0">
@@ -3565,12 +3646,35 @@ type 0309, grid 2.5 mm</description>
 <wire x1="101.6" y1="33.02" x2="106.68" y2="33.02" width="0.1524" layer="91"/>
 <wire x1="66.04" y1="33.02" x2="66.04" y2="25.4" width="0.1524" layer="91"/>
 <pinref part="GND1" gate="1" pin="GND"/>
+<pinref part="R10" gate="G$1" pin="1"/>
+<wire x1="111.76" y1="33.02" x2="106.68" y2="33.02" width="0.1524" layer="91"/>
+</segment>
+<segment>
+<pinref part="BAT-" gate="1" pin="P"/>
+<wire x1="101.6" y1="60.96" x2="96.52" y2="60.96" width="0.1524" layer="91"/>
+<pinref part="GND2" gate="1" pin="GND"/>
+<wire x1="96.52" y1="60.96" x2="96.52" y2="53.34" width="0.1524" layer="91"/>
 </segment>
 </net>
 <net name="N$3" class="0">
 <segment>
 <pinref part="U1" gate="G$1" pin="+IN"/>
-<wire x1="27.94" y1="60.96" x2="2.54" y2="60.96" width="0.1524" layer="91"/>
+<wire x1="38.1" y1="60.96" x2="2.54" y2="60.96" width="0.1524" layer="91"/>
+</segment>
+</net>
+<net name="VB" class="0">
+<segment>
+<pinref part="BAT+" gate="1" pin="P"/>
+<wire x1="101.6" y1="71.12" x2="96.52" y2="71.12" width="0.1524" layer="91"/>
+<wire x1="96.52" y1="71.12" x2="96.52" y2="76.2" width="0.1524" layer="91"/>
+<pinref part="VB" gate="G$1" pin="+3V3"/>
+</segment>
+</net>
+<net name="+3V3" class="0">
+<segment>
+<pinref part="Q1" gate="G$1" pin="D"/>
+<wire x1="66.04" y1="66.04" x2="66.04" y2="76.2" width="0.1524" layer="91"/>
+<pinref part="VB1" gate="G$1" pin="+3V3"/>
 </segment>
 </net>
 </nets>
