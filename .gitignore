@@ -43,6 +43,12 @@ eagle.epf
 *.o
 *.ko
 
+# List Files
+*.lst
+
+# Hex Files
+*.hex
+
 # Map Files
 *.map
 
