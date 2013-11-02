@@ -12,10 +12,12 @@ void initIO(void) {
 }
 
 void initTimer(void) {
-	//Set Compare mode to clear on match, set on $00
-	TCCR1 |= (1 << COM1A1) | (1 << CTC1) | (1 << PWM1A);
+	//Clear timer on compare match with OCR1C
+	TCCR1 |= (1 << CTC1);
 	//Set to PCK/4 Prescaling
 	TCCR1 |= (1 << CS11) | (1 << CS10);
+	//Turn on PWM based on Comparator B, Compare mode to clear on match
+	GTCCR |= (1 << PWM1B) | (1 << COM1B1);
 	//PLL Control and status
 	PLLCSR |= (1 << PCKE) | (1 << PLLE);
 	//When to "overflow"
@@ -30,15 +32,15 @@ void init(void) {
 	initTimer();
 }
 
+//Give a value from 0 to 100
+void setPulseWidth(uint8_t i) {
+	pwm = (uint8_t)(overflow * i/100);
+}
+
 void run(void) {
 	while(1) {
 
 	}
-}
-
-//Give a value from 0 to 100
-void setPulseWidth(uint8_t i) {
-	pwm = (uint8_t)(overflow * i/100);
 }
 
 int main (void){
