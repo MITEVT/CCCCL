@@ -34,7 +34,9 @@ void init(void) {
 
 //Give a value from 0 to 100
 void setPulseWidth(uint8_t i) {
-	pwm = (uint8_t)(overflow * i/100);
+	if ((i <= 100 && i >= 0)) {
+		pwm = (uint8_t)(overflow * i/100);
+	}
 }
 
 void run(void) {
