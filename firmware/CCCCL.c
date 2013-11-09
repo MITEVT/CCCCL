@@ -36,6 +36,7 @@ void init(void) {
 void setPulseWidth(uint8_t i) {
 	if ((i <= 100 && i >= 0)) {
 		pwm = (uint8_t)(overflow * i/100);
+		OCR1B = pwm;
 	}
 }
 

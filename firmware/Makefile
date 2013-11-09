@@ -74,7 +74,7 @@ MCU=attiny85
 # accept the same MCU name as avr-gcc (for example
 # for ATmega8s, avr-gcc expects 'atmega8' and 
 # avrdude requires 'm8')
-PROGRAMMER_MCU=t85
+PROGRAMMER_MCU=attiny85
 
 # Name of our project
 # (use a single word, e.g. 'myproject')
@@ -85,7 +85,7 @@ PROJECTNAME=CCCCL
 # (list all files to compile, e.g. 'a.c b.cpp as.S'):
 # Use .cc, .cpp or .C suffix for C++ files, use .S 
 # (NOT .s !!!) for assembly source code files.
-PRJSRC= CCCCL.c 
+PRJSRC=CCCCL.c
 
 # additional includes (e.g. -I/path/to/mydir)
 INC=
@@ -96,6 +96,9 @@ LIBS=
 # Optimization level, 
 # use s (size opt), 1, 2, 3 or 0 (off)
 OPTLEVEL=s
+
+#cpu frequency
+F_CPU=8000000UL
 
 
 #####      AVR Dude 'writeflash' options       #####
@@ -117,7 +120,7 @@ AVRDUDE_PROGRAMMERID=usbtiny
 # port--serial or parallel port to which your 
 # hardware programmer is attached
 #
-AVRDUDE_PORT=/dev/ttyS1
+#AVRDUDE_PORT=/dev/tty.usbserial-A800f8YO
 
 
 ####################################################
@@ -141,6 +144,7 @@ CFLAGS=-I. $(INC) -g -mmcu=$(MCU) -O$(OPTLEVEL) \
 	-fpack-struct -fshort-enums             \
 	-funsigned-bitfields -funsigned-char    \
 	-Wall -Wstrict-prototypes               \
+	-DF_CPU=$(F_CPU)
 	-Wa,-ahlms=$(firstword                  \
 	$(filter %.lst, $(<:.c=.lst)))
 
